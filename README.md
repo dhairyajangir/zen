@@ -1,36 +1,177 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# ZEN
+
+A calm, immersive digital space designed for stillness, focus, and presence.
+
+Zen is not a typical website. It is a minimal, cinematic experience that uses motion, light, and restraint to guide the user into a quieter mental state.
+
+---
+
+## Philosophy
+
+Most digital products compete for attention.
+
+Zen does the opposite.
+
+It removes noise, slows interaction, and creates a space where the user can pause, breathe, and reset.
+
+The interface is intentionally minimal.
+The motion is slow and deliberate.
+Nothing exists without a reason.
+
+---
+
+## Experience
+
+Zen is built as a continuous visual journey rather than a collection of pages.
+
+* A scroll-driven hero introduces the environment through cinematic motion
+* Sections unfold gradually, maintaining emotional continuity
+* Visual elements use soft gradients, depth, and subtle contrast instead of harsh UI
+* Interactions are intentionally minimal to avoid breaking immersion
+
+This is not a dashboard.
+This is a controlled, ambient experience.
+
+---
+
+## Core Features
+
+* Scroll-scrubbed cinematic hero using high-resolution frame sequences
+* High-DPI canvas rendering for sharp visuals across devices
+* Dark, low-contrast visual system designed for comfort
+* Section-based narrative structure (philosophy, breath, frequency, alignment)
+* Minimal UI with focus on atmosphere rather than interaction
+
+---
+
+## Tech Stack
+
+* Next.js (App Router)
+* React
+* TypeScript
+* Tailwind CSS
+
+---
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open in browser:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Production Build
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm run start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```text
+src/
+  app/
+    layout.tsx
+    page.tsx
+    globals.css
+  components/
+    HeroScroll.tsx
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+public/
+  frames/        # raw frame sequences
+  frames-hd/     # high-resolution frames used in production
+  stitch/        # design reference assets
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Hero Animation System
+
+The hero section is powered by a canvas-based frame scrub system:
+
+* Frames are rendered manually to canvas for full control
+* Scroll position maps directly to frame index
+* High-resolution assets ensure cinematic clarity
+* Retina scaling is applied for consistent sharpness
+
+Component:
+
+```text
+src/components/HeroScroll.tsx
+```
+
+---
+
+## Updating Frames
+
+To replace or extend the hero animation:
+
+1. Maintain the filename pattern
+   `ezgif-frame-001.jpg → ezgif-frame-XXX.jpg`
+
+2. Update total frame count in:
+
+```text
+HeroScroll.tsx
+```
+
+3. Use high-resolution images (preferably >1920px width)
+
+---
+
+## Current Limitations
+
+* No backend or user state yet
+* Interactions are primarily visual
+* Audio and session systems are not implemented
+
+---
+
+## Direction
+
+Zen is evolving from a cinematic landing experience into a full meditation product.
+
+Planned direction includes:
+
+* Real-time breathing sessions
+* Soundscapes and ambient audio
+* Transition from scroll-based to state-based interaction
+* Mobile-first experience and native app
+
+---
+
+## Guiding Principles
+
+* Reduce, don’t add
+* Motion should feel natural, never forced
+* Performance is part of the experience
+* Calm > features
+
+---
+
+## Scripts
+
+```bash
+npm run dev
+npm run build
+npm run start
+npm run lint
+```

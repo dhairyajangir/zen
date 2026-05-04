@@ -1,64 +1,106 @@
+﻿'use client';
+
 import Image from "next/image";
+import { useEffect } from "react";
+import HeroScroll from "@/components/HeroScroll";
 
 export default function Home() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.18 }
+    );
+
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <div className="stitch-page">
+      <HeroScroll />
+
+      <main className="content-wrap">
+        <section className="split reveal">
+          <div>
+            <p className="kicker">Philosophy 01</p>
+            <h2>Dissolve into the cosmic field.</h2>
+            <p className="body">
+              In the depth of silence, the boundaries of the self begin to blur. Our journey is not about
+              finding something new, but about letting go of the noise and reconnecting with the quiet pulse
+              of the void.
+            </p>
+            <div className="tags">
+              <span>Weightless</span>
+              <span>Infinite</span>
+            </div>
+          </div>
+          <div className="photo-card">
+            <Image src="/stitch/i1.png" alt="Cosmic figure" fill className="cover" />
+          </div>
+        </section>
+
+        <section className="breath-clock reveal">
+          <div className="ring">
+            <div className="ring-inner">
+              <Image src="/stitch/i3.png" alt="Energy aura" width={130} height={176} className="center-art" />
+              <p className="time">12:00</p>
+              <p className="sub">Breathe In</p>
+            </div>
+          </div>
+          <div className="clock-controls">
+            <button>↺</button>
+            <button className="active">⏸</button>
+            <button>☾</button>
+          </div>
+        </section>
+
+        <section className="freq reveal">
+          <h3>Vibrational Frequencies</h3>
+          <p>Choose the acoustic texture of your journey.</p>
+          <div className="grid">
+            <article>
+              <Image src="/stitch/i5.png" alt="Starlit echoes" fill className="cover" />
+              <div><h4>Starlit Echoes</h4><small>High Frequency - 432Hz</small></div>
+            </article>
+            <article>
+              <Image src="/stitch/i7.png" alt="Deep calm" fill className="cover" />
+              <div><h4>Deep Calm</h4><small>Low Resonance - 174Hz</small></div>
+            </article>
+            <article>
+              <Image src="/stitch/i2.png" alt="Void pulse" fill className="cover" />
+              <div><h4>Void Pulse</h4><small>Pure Silence - 0Hz</small></div>
+            </article>
+          </div>
+        </section>
+
+        <section className="align reveal">
+          <div>
+            <h3>Your Alignment</h3>
+            <div className="metrics">
+              <div>
+                <small>Total Stillness</small>
+                <p>142h</p>
+              </div>
+              <div>
+                <small>Current Streak</small>
+                <p>12d</p>
+              </div>
+            </div>
+            <div className="bar"><span /></div>
+          </div>
+          <div className="align-art">
+            <Image src="/stitch/i4.png" alt="Alignment" fill className="cover" />
+          </div>
+        </section>
       </main>
     </div>
   );
